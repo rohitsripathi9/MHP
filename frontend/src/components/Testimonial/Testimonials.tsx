@@ -94,7 +94,7 @@ const Testimonial = () => {
     <section className="testimonial-section" id="testimonial-section">
       <h2 className="testimonial-heading">What Our Customers Say</h2>
       <p className="testimonial-subheading">
-        Check out what our customers have to say about us!
+        Check out what our customers say about us!
       </p>
       <Carousel<TestimonialItem> // Explicitly type the Carousel component
         data={testimonials}

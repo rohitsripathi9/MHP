@@ -65,18 +65,21 @@ const PlaceOrder = () => {
         const pickupTime = new Date();
         pickupTime.setHours(parseInt(hours), parseInt(minutes), 0);
 
-        // If pickup time is for today but earlier than current time, assume it's for tomorrow
+        // If pickup time is earlier than current time, reject it
         if (pickupTime < currentTime) {
-            pickupTime.setDate(pickupTime.getDate() + 1);
+            const currentHours = currentTime.getHours().toString().padStart(2, '0');
+            const currentMinutes = currentTime.getMinutes().toString().padStart(2, '0');
+            setError(`Cannot select a past time. Current time is ${currentHours}:${currentMinutes}`);
+            setIsLoading(false);
+            return;
         }
 
         // Ensure pickup time is at least 5 minutes from now
         const minPickupTime = new Date(currentTime.getTime() + 5 * 60000);
         if (pickupTime < minPickupTime) {
-            const nextValidTime = new Date(minPickupTime);
-            const nextHours = nextValidTime.getHours().toString().padStart(2, '0');
-            const nextMinutes = nextValidTime.getMinutes().toString().padStart(2, '0');
-            setError(`Please select a pickup time after ${nextHours}:${nextMinutes}`);
+            const nextHours = minPickupTime.getHours().toString().padStart(2, '0');
+            const nextMinutes = minPickupTime.getMinutes().toString().padStart(2, '0');
+            setError(`Please select a pickup time after ${nextHours}:${nextMinutes} (at least 5 minutes from now)`);
             setIsLoading(false);
             return;
         }
@@ -264,8 +267,10 @@ const PlaceOrder = () => {
                   type="time" 
                   className="input-animate"
                   id="pickupTime"
+                  min="07:00"
+                  max="19:00"
                 />
-                <label htmlFor="pickupTime">Pickup Time (24 Hours Available)</label>
+                <label htmlFor="pickupTime">Pickup Time (7 AM - 7 PM)</label>
               </div>
 
               <div className="form-group">

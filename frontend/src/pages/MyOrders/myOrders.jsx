@@ -163,8 +163,8 @@ const MyOrders = () => {
                   <div className={`status-container ${status.isDelivered ? 'delivered' : 'confirmed'}`}>
                     {status.isDelivered ? (
                       <>
-                        <span className="status-icon">✓</span>
-                        <span className="status-text">{status.text}</span>
+                        {/* Dot will be added via CSS */}
+                        <span className="status-text">{status.text}</span> 
                       </>
                     ) : (
                       <>

@@ -3,7 +3,7 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
 }
 
 .navbar .logo{
@@ -20,8 +20,25 @@
 
 .navbar-right{
     display:flex;
-    align-items :center;
+    align-items: center;
     gap:40px;
+}
+
+/* Base styles for all navbar icons */
+.navbar-right img,
+.navbar-search-icon img,
+.navbar-profile-img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    transition: all 0.2s ease;
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.navbar-right img:hover,
+.navbar-search-icon img:hover,
+.navbar-profile-img:hover {
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
 }
 
 .navbar button{
@@ -29,11 +46,10 @@
     font-size:16px;
     color:#49557e;
     border:1px solid tomato;
-    padding :10px 30px;
+    padding:10px 30px;
     border-radius: 30px;
-    cursor :pointer;
+    cursor:pointer;
     transition:0.3s;
-    
 }
 
 .navbar button:hover{
@@ -50,80 +66,120 @@
 }
 
 .navbar-search-icon{
-    position :relative;
+    position:relative;
 }
 
 .navbar-search-icon .dot{
-    position :absolute;
-    min-width:10px;
-    min-height: 10px;
+    position:absolute;
+    width: 11px;
+    height: 11px;
     background-color:tomato;
-    border-radius:5px;
-    top:-8px;
-    right:-8px;
+    border-radius:50%;
+    top:-5px;
+    right:-5px;
+    transition: all 0.2s ease;
 }
 
 @media(max-width:1050px){
     .navbar .logo{
-        width:140px;
+        width:100px;
     }
     .navbar-menu{
         gap:20px;
-        font-size:17px;
+        font-size:16px;
     }
     .navbar-right{
-        gap:30px;
+        gap:25px;
     }
-    .navbar-right img{
-        width:22px;
+    .navbar-right img,
+    .navbar-search-icon img,
+    .navbar-profile-img {
+        width:35px;
+        height:35px;
     }
-
-    .navbar-right button{
+    .navbar-search-icon .dot {
+        width: 10px;
+        height: 10px;
+        top: -4px;
+        right: -4px;
+    }
+    .navbar button{
         padding:8px 25px;
-    }
-    
-    .navbar-right a img {
-        transform: scale(1.8);
+        font-size:15px;
     }
 }
 
 @media(max-width:900px){
     .navbar .logo{
-        width:120px;
+        width:90px;
     }
     .navbar-menu{
         gap:15px;
-        font-size:16px;
+        font-size:15px;
     }
     .navbar-right{
         gap:20px;
     }
-    .navbar-right img{
-        width:20px;
+    .navbar-right img,
+    .navbar-search-icon img,
+    .navbar-profile-img {
+        width:32px;
+        height:32px;
     }
-
-    .navbar-right button{
+    .navbar-search-icon .dot {
+        width: 9px;
+        height: 9px;
+        top: -4px;
+        right: -4px;
+    }
+    .navbar button{
         padding:7px 15px;
-        font-size: 14px;
-    }
-    
-    .navbar-right a img {
-        transform: scale(1.5);
+        font-size:14px;
     }
 }
 
-
 @media (max-width:750px){
-   
     .navbar-menu{
-       display:none;
+        display:none;
     }
     .navbar {
         width:100%;
-        padding:10px 5%;
+        padding:10px 15px;
+    }
+    .navbar .logo{
+        width:70px;
+    }
+    .navbar-right{
+        gap:22px;
+        margin-right: 0;
+    }
+    .navbar-right img,
+    .navbar-search-icon img,
+    .navbar-profile-img {
+        width:30px;
+        height:30px;
+        transform: scale(1.3) !important;
+    }
+    .navbar-search-icon .dot {
+        width: 8px;
+        height: 8px;
+        top: -3px;
+        right: -3px;
+    }
+    .navbar button{
+        padding:6px 12px;
+        font-size:13px;
+    }
+    .navbar-search-icon {
+        margin-right: 0;
+    }
+    /* Remove large scaling for mobile */
+    .navbar-profile img.navbar-profile-img,
+    .navbar-search-icon img,
+    .navbar-right a img {
+        transform: scale(1.3) !important;
     }
 }
-
 
 .navbar-profile {
     position: relative;
@@ -184,18 +240,11 @@ hr {
     border-top: 1px solid #eee;
 }
 
-.navbar-right img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-}
-
 .navbar-profile-dropdown li{
-   align-items: center;
-   display: flex;   
-   gap:10px;
-   cursor: pointer;
-    
+    align-items: center;
+    display: flex;   
+    gap:10px;
+    cursor: pointer;
 }
 
 .navbar-profile-dropdown img{
@@ -235,17 +284,17 @@ hr {
 /* Override for specific icons */
 .navbar-profile img.navbar-profile-img,
 .navbar-search-icon img {
-    width: 35px;
-    height: 35px;
-    transform: scale(1.8);
+    width: 38px;
+    height: 38px;
+    transform: scale(2);
     background: transparent;
 }
 
 /* Add specific styling for search icon */
 .navbar-right a img {
-    width: 35px;
-    height: 35px;
-    transform: scale(2.2);
+    width: 38px;
+    height: 38px;
+    transform: scale(2);
     object-fit: contain;
     filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.2));
     transition: all 0.2s ease;
