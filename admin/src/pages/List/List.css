@@ -1,0 +1,85 @@
+.list-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Table format */
+.list-table-format {
+    display: grid;
+    grid-template-columns: 0.7fr 2fr 1.5fr 1fr 0.5fr; /* wider Category */
+    align-items: center;
+    gap: 20px; /* increased spacing between columns */
+    padding: 12px 15px;
+    border: 1px solid #cacaca;
+    font-size: 14px;
+}
+
+.list-table-format p {
+    padding: 0 5px; /* spacing inside columns */
+}
+
+.list-table-format.title {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.food-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Make the delete 'x' red and clickable */
+.cursor {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 600px) {
+    .list-table-format {
+        grid-template-columns: 1fr 2fr 1fr;
+        font-size: 12px;
+        gap: 15px;
+    }
+
+    .food-img {
+        display: none;
+    }
+
+    .list-table-format.title {
+        display: none;
+    }
+}
+
+/* Existing styles remain unchanged above... */
+
+/* Price with orange circle and animation */
+.price-circle {
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    animation: bounce 1.5s infinite;
+    transition: transform 0.2s ease;
+    margin-left: 5px;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}

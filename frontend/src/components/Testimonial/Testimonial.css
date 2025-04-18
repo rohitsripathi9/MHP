@@ -1,0 +1,142 @@
+/* Container for the testimonial section */
+.testimonial-section {
+  margin-top: 50px;
+  text-align: center;
+  padding: 60px 20px; /* Increased padding for better spacing */
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+}
+
+/* Heading for the testimonial section */
+.testimonial-heading {
+  font-size: 2.5rem; /* Larger heading */
+  margin-bottom: 20px;
+  color: #333; /* Dark text color */
+}
+
+/* Subheading for the testimonial section */
+.testimonial-subheading {
+  font-size: 1.2rem;
+  margin-bottom: 40px; /* Increased margin for better spacing */
+  color: #555; /* Slightly lighter text color */
+}
+
+/* Container for the carousel */
+.testimonial-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Individual testimonial card */
+.testimonial-item {
+  width: 450px; /* Increased width for larger cards */
+  height: 250px; /* Fixed height for rectangular cards */
+  padding: 30px; /* Increased padding */
+  margin: 0 20px; /* Increased gap between cards */
+  background: linear-gradient(135deg, #ffffff, #f9f9f9); /* Light glossy gradient */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover effect for testimonial cards */
+.testimonial-item:hover {
+  transform: translateY(-10px); /* Lift card on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  background: linear-gradient(135deg, #ffffff, #e0e0e0); /* Darker gradient on hover */
+}
+
+/* Name styling inside the card */
+.testimonial-name {
+  font-size: 1.8rem; /* Larger name font size */
+  margin-bottom: 15px;
+  color: #222; /* Dark text color */
+}
+
+/* Review text styling inside the card */
+.testimonial-item p {
+  font-size: 1.1rem; /* Larger review font size */
+  margin: 0;
+  color: #444; /* Slightly lighter text color */
+  line-height: 1.5; /* Improve readability */
+}
+
+/* Adjust the size of the testimonial pictures */
+.testimonial-picture {
+  width: 50px; /* Adjust to a smaller width */
+  height: 50px; /* Adjust to a smaller height */
+  border-radius: 50%; /* Make it circular */
+  object-fit: cover; /* Ensure the image scales properly */
+  margin-bottom: 10px; /* Add some spacing */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .testimonial-item {
+    width: 280px; /* Smaller width for mobile */
+    height: 180px; /* Smaller height for mobile */
+    padding: 15px; /* Reduced padding for mobile */
+    margin: 0 10px; /* Reduced gap for mobile */
+  }
+
+  .testimonial-heading {
+    font-size: 2rem; /* Smaller heading for mobile */
+  }
+
+  .testimonial-subheading {
+    font-size: 1rem; /* Smaller subheading for mobile */
+  }
+
+  .testimonial-name {
+    font-size: 1.4rem; /* Smaller name font size for mobile */
+    margin-bottom: 10px; /* Reduced margin for mobile */
+  }
+
+  .testimonial-item p {
+    font-size: 0.9rem; /* Smaller review font size for mobile */
+    line-height: 1.4; /* Adjust line height for better readability */
+  }
+
+  .testimonial-picture {
+    width: 40px; /* Smaller picture size for mobile */
+    height: 40px; /* Smaller picture size for mobile */
+    margin-bottom: 8px; /* Reduced spacing for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-item {
+    width: 100%; /* Full width for very small screens */
+    height: auto; /* Allow height to adjust based on content */
+    padding: 15px; /* Reduced padding for very small screens */
+    margin: 0 0 20px 0; /* Remove horizontal margin, add bottom margin */
+  }
+
+  .testimonial-heading {
+    font-size: 1.8rem; /* Smaller heading for very small screens */
+  }
+
+  .testimonial-subheading {
+    font-size: 0.9rem; /* Smaller subheading for very small screens */
+  }
+
+  .testimonial-name {
+    font-size: 1.3rem; /* Smaller name font size for very small screens */
+  }
+
+  .testimonial-item p {
+    font-size: 0.85rem; /* Smaller review font size for very small screens */
+  }
+
+  .testimonial-picture {
+    width: 35px; /* Smaller picture size for very small screens */
+    height: 35px; /* Smaller picture size for very small screens */
+  }
+}

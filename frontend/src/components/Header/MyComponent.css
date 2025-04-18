@@ -1,0 +1,42 @@
+.typewriter-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    padding-top: 10px; /* Adjust padding if needed */
+}
+
+
+.typewriter-text {
+    font-size: clamp(43px, 14vw, 99px);
+    font-weight: bold;
+    color: inherit; /* This keeps the original color */
+    text-align: center;
+    padding-top: 10px;
+    white-space: nowrap; /* Prevents text wrapping */
+    color: rgb(42, 41, 41);
+}
+
+@media (max-width: 750px) {
+    .typewriter-container {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .typewriter-text {
+        font-size: clamp(18px, 5vw, 50px);
+        font-weight: bold;
+    }
+
+    .view-menu-button {
+        padding: 8px 16px;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+}

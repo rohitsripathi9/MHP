@@ -1,0 +1,318 @@
+.place-order-container {
+  min-height: calc(100vh - 80px); /* Subtract navbar height */
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.order-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.order-section {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.information-section {
+  padding-right: 30px;
+  border-right: 1px solid rgba(238, 238, 238, 0.5);
+  position: relative;
+}
+
+.information-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1px;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 115, 0, 0.2),
+    transparent
+  );
+}
+
+.information-section h2,
+.cart-totals-section h2 {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #333 0%, #666 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 20px;
+  margin-top: 20px;
+}
+
+.input-animate {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid rgba(238, 238, 238, 0.8);
+  border-radius: 12px;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  color: #333;
+  letter-spacing: 0.3px;
+}
+
+.input-animate:focus {
+  border-color: #ff7300;
+  background: white;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(255, 115, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.input-animate:hover {
+  border-color: rgba(255, 115, 0, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.input-animate::placeholder {
+  color: #aaa;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.input-animate:focus::placeholder {
+  color: #ff7300;
+  transform: translateX(5px);
+}
+
+/* Add input label styling */
+.form-group {
+  position: relative;
+  width: 100%;
+}
+
+.form-group label {
+  position: absolute;
+  left: 15px;
+  top: -10px;
+  background: white;
+  padding: 0 8px;
+  font-size: 0.85rem;
+  color: #666;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+.form-group:focus-within label {
+  color: #ff7300;
+  transform: translateY(-2px);
+}
+
+.input-animate:not(:placeholder-shown) {
+  border-color: rgba(255, 115, 0, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.input-animate:not(:placeholder-shown) + label {
+  color: #ff7300;
+  transform: translateY(-2px);
+}
+
+/* Add focus ring animation */
+@keyframes focusRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 115, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 115, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 115, 0, 0);
+  }
+}
+
+.input-animate:focus {
+  animation: focusRing 0.8s ease-out;
+}
+
+.cart-totals-section {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.totals-details {
+  margin-bottom: 30px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.5);
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.total-row:hover {
+  transform: translateX(5px);
+  border-bottom-color: #ff7300;
+}
+
+.total-row.final-total {
+  border-bottom: none;
+  margin-top: 15px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(238, 238, 238, 0.5);
+  font-weight: bold;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.animated-button {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #ff7300, #ffcc00);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.animated-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.animated-button:hover::before {
+  left: 100%;
+}
+
+.animated-button.flying {
+  background: linear-gradient(135deg, #00c853, #69f0ae);
+  transform: scale(0.95);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .order-section {
+    grid-template-columns: 1fr;
+  }
+
+  .information-section {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(238, 238, 238, 0.5);
+    padding-bottom: 30px;
+  }
+
+  .information-section::after {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .place-order-container {
+    padding: 20px 15px;
+  }
+
+  .order-section {
+    padding: 20px;
+  }
+}
+
+/* Add smooth transition for all elements */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Add loading shimmer effect */
+@keyframes loadingShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Time Input Specific Styles */
+input[type="time"].input-animate {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 12px 15px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input[type="time"].input-animate::-webkit-calendar-picker-indicator {
+  background-color: transparent;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.2s;
+}
+
+input[type="time"].input-animate::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+input[type="time"].input-animate:focus {
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.3);
+  background-color: #fff;
+}
+
+/* Add a subtle hover effect */
+input[type="time"].input-animate:hover {
+  background-color: #fff;
+  transform: translateY(-1px);
+}

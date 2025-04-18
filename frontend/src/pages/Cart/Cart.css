@@ -1,0 +1,382 @@
+.cart {
+    margin: 20px auto;
+    padding: 25px;
+    background-color: #fcfcfc;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    max-width: 1200px;
+}
+
+/* Cart Items Layout */
+.cart-items-title,
+.cart-items-item {
+    display: grid;
+    grid-template-columns: 0.8fr 2.5fr 1fr 0.8fr 1.2fr 0.5fr;
+    align-items: center;
+    text-align: center;
+    padding: 15px 10px;
+    gap: 10px;
+}
+
+.cart-items-title {
+    color: #444;
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.cart-items-item {
+    border-bottom: 1px solid #eaeaea;
+    transition: background-color 0.2s;
+}
+
+.cart-items-item:hover {
+    background-color: #f8f8f8;
+}
+
+.cart-items-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-items-item .cross {
+    cursor: pointer;
+    color: #ff5252;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.cart-items-item .cross:hover {
+    color: #e60000;
+    transform: scale(1.1);
+}
+
+/* Cart Bottom Section */
+.cart-bottom {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cart-total {
+    flex: 1;
+    min-width: 280px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.cart-total h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.4rem;
+}
+
+.cart-total-details {
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+    font-size: 1rem;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Removed Thick HR */
+.cart-total-details.no-border {
+    font-weight: bold;
+    color: #333;
+    border-bottom: none;
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+/* 🔥 3D Animated Checkout Button with Subtle Glow */
+.animated-button {
+    border: none;
+    color: white;
+    background: linear-gradient(135deg, #ff7300, #ffcc00);
+    width: auto;
+    max-width: 280px;
+    text-align: center;
+    margin: 15px auto;
+    display: block;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    position: relative;
+    outline: none;
+    box-shadow: 0px 4px 0px #cc5800, 0px 6px 12px rgba(255, 115, 0, 0.2);
+    animation:  floating 0.1s infinite alternate ease-in-out;
+}
+
+/* 3D Hover Effect */
+.animated-button:hover {
+    transform: scale(1.0) translateY(-2px);
+    box-shadow: 0px 6px 10px #6f6f6e, 0px 8px 15px rgba(93, 92, 91, 0.3);
+}
+
+/* Click Effect */
+.animated-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 0px #cc5800, 0px 4px 8px rgba(255, 115, 0, 0.1);
+}
+
+/* Subtle Glow Effect */
+@keyframes subtleGlow {
+    0% { box-shadow: 0 0 2px #858585, 0 0 8px #5d5858, 0 0 16px #525252; }
+    50% { box-shadow: 0 0 4px #908f8f, 0 0 12px #666666, 0 0 20px #787878; }
+    100% { box-shadow: 0 0 2px #ff8922, 0 0 8px #eee5dc, 0 0 16px #faf5f2; }
+}
+
+/* Floating Effect */
+@keyframes floating {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
+}
+
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .cart-bottom {
+        flex-direction: column;
+    }
+
+    .cart-total {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart {
+        padding: 15px;
+    }
+
+    .cart-items-title,
+    .cart-items-item {
+        grid-template-columns: 0.6fr 2fr 0.8fr 0.7fr 1fr 0.4fr;
+        font-size: 0.9rem;
+        padding: 12px 5px;
+    }
+
+    .cart-items-item img {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 580px) {
+    .cart-items-title,
+    .cart-items-item {
+        grid-template-columns: 0.5fr 1.2fr 0.8fr 0.7fr 0.8fr 0.4fr;
+        font-size: 0.8rem;
+        gap: 5px;
+    }
+
+    .cart-items-item img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .animated-button {
+        font-size: 1rem;
+        padding: 12px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-items-title,
+    .cart-items-item {
+        grid-template-columns: 0.5fr 1fr 0.7fr 0.6fr 0.7fr 0.4fr;
+        font-size: 0.75rem;
+        padding: 10px 3px;
+        gap: 3px;
+    }
+
+    .cart-items-item img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.checkout-button {
+    width: auto;
+    min-width: 160px;
+    padding: 12px 24px;
+    margin: 20px auto 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ff7300, #ff9248);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.checkout-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff8324, #ffa666);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.checkout-button::after {
+    content: '→';
+    margin-left: 4px;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.checkout-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 115, 0, 0.2);
+}
+
+.checkout-button:hover::after {
+    transform: translateX(3px);
+}
+
+.checkout-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(255, 115, 0, 0.2);
+}
+
+/* Add a floating effect to cart items indicator */
+.cart-has-items .checkout-button {
+    position: relative;
+}
+
+.cart-has-items .checkout-button::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    background: #ff4757;
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.1);
+    }
+}
+
+/* Add these new animations and styles */
+@keyframes cardFlyOut {
+    0% {
+        transform: perspective(1000px) rotateX(0) rotateY(0) translateZ(0);
+        opacity: 1;
+    }
+    30% {
+        transform: perspective(1000px) rotateX(10deg) rotateY(-15deg) translateZ(100px);
+    }
+    100% {
+        transform: perspective(1000px) rotateX(30deg) rotateY(-45deg) translateZ(300px) translateX(1000px);
+        opacity: 0;
+    }
+}
+
+@keyframes lettersFlyOut {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(800px) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+@keyframes screenTransition {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+.cart.flying-animation .cart-total {
+    animation: cartSlideUp 0.25s ease-out forwards;
+}
+
+.cart.flying-animation .checkout-button span {
+    display: inline-block;
+    animation: lettersFlyOut 1s ease-in forwards;
+}
+
+.screen-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff7300, #ffcc00);
+    z-index: 1000;
+    clip-path: circle(0% at 50% 50%);
+    pointer-events: none;
+}
+
+.screen-transition.active {
+    animation: pageTransition 0.3s ease-out forwards;
+}
+
+@keyframes cartSlideUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+@keyframes pageTransition {
+    0% {
+        clip-path: circle(0% at 50% 50%);
+    }
+    100% {
+        clip-path: circle(150% at 50% 50%);
+    }
+}

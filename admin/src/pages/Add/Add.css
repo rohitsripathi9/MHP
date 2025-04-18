@@ -1,0 +1,63 @@
+.add {
+  padding: 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-img-upload img {
+  max-width: 100%;
+  height: auto;
+}
+
+.add-btn {
+  padding: 10px 20px;
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #e64a19;
+}
+
+/* Add styling for the form itself */
+form.flex-col {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Add styling for the category-price section */
+.add-category-price {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.add-category, 
+.add-price {
+  flex: 1;
+}
+
+/* Make inputs and textareas full width */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

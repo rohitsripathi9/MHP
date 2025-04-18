@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Outfit;
+}
+
+body{
+    min-height: 100vh;
+    background-color: #fcfcfc;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+hr{
+  border:none;
+  height: 1px;
+  background-color: #a9a9a9;  
+}
+
+/* Add the app-content layout styles */
+.app-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+}
+
+/* This will make content take remaining width */
+.app-content > div:not(.sidebar) {
+  flex: 1;
+}
+
+.cursor{
+  cursor:pointer;
+}

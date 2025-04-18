@@ -1,0 +1,119 @@
+/* 🔹 Background Overlay (Soft & Professional) */
+.login-popup {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1); /* Subtle Overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 🚀 **3D Engraved Card Effect** */
+.login-popup-container {
+    width: max(30vw, 400px);
+    background: #f0f0f0;
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 16px;
+    
+    /* **Permanent Inset Bevel Effect (Engraved Look)** */
+    box-shadow: 
+        inset 5px 5px 10px rgba(180, 180, 180, 0.6), 
+        inset -5px -5px 10px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease-in-out;
+}
+
+/* **Title & Close Button** */
+.login-popup-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* **Close Button Animation (Subtle Rotation)** */
+.login-popup-title img {
+    width: 22px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.login-popup-title img:hover {
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* **Bubble Input Fields - Engraved Look Always** */
+.login-popup-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-popup-inputs input {
+    outline: none;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #f0f0f0;
+    
+    /* **Engraved Effect on Inputs** */
+    box-shadow: 
+        inset 4px 4px 6px rgba(180, 180, 180, 0.6), 
+        inset -4px -4px 6px rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease-in-out;
+}
+
+/* **On Focus - Just a Border Color Change (No Glow)** */
+.login-popup-inputs input:focus {
+    border: 2px solid #ff9800;
+    background: #ffffff;
+}
+
+/* ✅ **Smooth Button (No Bevel Effect)** */
+.login-popup-container button {
+    border: none;
+    padding: 14px;
+    border-radius: 15px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(145deg, #ff9800, #e67e00);
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* **Button Hover - Slight Darker Shade for Click Feel** */
+.login-popup-container button:hover {
+    background: linear-gradient(145deg, #e67e00, #d06d00);
+}
+
+/* **Login/Signup Links - Better Visibility & Separation** */
+.login-popup p span {
+    color: #ff6600;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.login-popup p span:hover {
+    color: #e0d9d1;
+}
+
+/* 🚀 **Smooth Fade-in Animation** */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
