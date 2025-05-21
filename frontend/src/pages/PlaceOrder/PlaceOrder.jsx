@@ -10,7 +10,7 @@ import { jwtDecode } from 'jwt-decode'
 const PlaceOrder = () => {
   const navigate = useNavigate();
   const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
-  
+
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -35,7 +35,7 @@ const PlaceOrder = () => {
   }, [token, navigate]);
 
   const onChangeHandler = (event) => {
-    const name = event.target.name;  
+    const name = event.target.name;
     const value = event.target.value;
     setData(data => ({...data, [name]: value}))
   }
@@ -62,8 +62,17 @@ const PlaceOrder = () => {
 
         const currentTime = new Date();
         const [hours, minutes] = data.pickup_time.split(':');
+        const pickupHour = parseInt(hours);
+        const pickupMinutes = parseInt(minutes);
         const pickupTime = new Date();
-        pickupTime.setHours(parseInt(hours), parseInt(minutes), 0);
+        pickupTime.setHours(pickupHour, pickupMinutes, 0);
+
+        // Check if pickup time is within allowed hours (7 AM to 7 PM)
+        if (pickupHour < 7 || pickupHour >= 19) {
+            setError("Pickup time must be between 7:00 AM and 7:00 PM");
+            setIsLoading(false);
+            return;
+        }
 
         // If pickup time is earlier than current time, reject it
         if (pickupTime < currentTime) {
@@ -98,7 +107,7 @@ const PlaceOrder = () => {
             setIsLoading(false);
             return;
         }
-        
+
         let orderItems = [];
         food_list.forEach((item) => {
             if (cartItems[item._id] > 0) {
@@ -131,20 +140,18 @@ const PlaceOrder = () => {
         }
 
         console.log("Sending order data:", JSON.stringify(orderData, null, 2));
-        
+
         const response = await axios.post(`${url}/api/order/place`, orderData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             }
         });
-        
+
         console.log("Order response:", response.data);
-        
+
         if (response.data.success && response.data.session_url) {
-            // Store pickup time in localStorage before redirecting
             localStorage.setItem('pending_order_pickup_time', formattedPickupTime);
-            
             const { session_url } = response.data;
             console.log("Redirecting to Stripe:", session_url);
             window.location.replace(session_url);
@@ -189,18 +196,18 @@ const PlaceOrder = () => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="place-order-container"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       <form onSubmit={placeOrder} className="order-content">
-        <motion.div 
+        <motion.div
           className="order-section"
           variants={childVariants}
         >
-          <motion.div 
+          <motion.div
             className="information-section"
             variants={childVariants}
           >
@@ -212,28 +219,28 @@ const PlaceOrder = () => {
             )}
             <div className="form-grid">
               <div className="form-group">
-                <motion.input 
+                <motion.input
                   name="first_name"
                   required
                   onChange={onChangeHandler}
                   value={data.first_name}
                   whileFocus={{ scale: 1.02 }}
-                  type="text" 
+                  type="text"
                   placeholder="Enter first name"
                   className="input-animate"
                   id="firstName"
                 />
                 <label htmlFor="firstName">First Name</label>
               </div>
-              
+
               <div className="form-group">
-                <motion.input 
+                <motion.input
                   name="last_name"
                   required
                   onChange={onChangeHandler}
                   value={data.last_name}
                   whileFocus={{ scale: 1.02 }}
-                  type="text" 
+                  type="text"
                   placeholder="Enter last name"
                   className="input-animate"
                   id="lastName"
@@ -242,13 +249,13 @@ const PlaceOrder = () => {
               </div>
 
               <div className="form-group">
-                <motion.input 
+                <motion.input
                   name="phone"
                   required
                   onChange={onChangeHandler}
                   value={data.phone}
                   whileFocus={{ scale: 1.02 }}
-                  type="tel" 
+                  type="tel"
                   placeholder="Enter phone number"
                   className="input-animate"
                   id="phone"
@@ -258,29 +265,30 @@ const PlaceOrder = () => {
               </div>
 
               <div className="form-group">
-                <motion.input 
+                <motion.input
                   name="pickup_time"
                   required
                   onChange={onChangeHandler}
                   value={data.pickup_time}
                   whileFocus={{ scale: 1.02 }}
-                  type="time" 
+                  type="time"
                   className="input-animate"
                   id="pickupTime"
                   min="07:00"
                   max="19:00"
                 />
-                <label htmlFor="pickupTime">Pickup Time (7 AM - 7 PM)</label>
+                <label htmlFor="pickupTime">Pickup Time (7 AM - 7 PM only)</label>
+                <small className="time-hint">Orders can only be placed between 7 AM and 7 PM</small>
               </div>
 
               <div className="form-group">
-                <motion.input 
+                <motion.input
                   name="department"
                   required
                   onChange={onChangeHandler}
                   value={data.department}
                   whileFocus={{ scale: 1.02 }}
-                  type="text" 
+                  type="text"
                   placeholder="Enter department"
                   className="input-animate"
                   id="department"
@@ -289,13 +297,13 @@ const PlaceOrder = () => {
               </div>
 
               <div className="form-group">
-                <motion.input 
+                <motion.input
                   name="year"
                   required
                   onChange={onChangeHandler}
                   value={data.year}
                   whileFocus={{ scale: 1.02 }}
-                  type="text" 
+                  type="text"
                   placeholder="Enter year"
                   className="input-animate"
                   id="year"
@@ -304,13 +312,13 @@ const PlaceOrder = () => {
               </div>
 
               <div className="form-group">
-                  <motion.input 
+                  <motion.input
                   name="section"
                   required
                   onChange={onChangeHandler}
                   value={data.section}
                   whileFocus={{ scale: 1.02 }}
-                  type="text" 
+                  type="text"
                   placeholder="Enter section"
                   className="input-animate"
                   id="section"
@@ -320,12 +328,12 @@ const PlaceOrder = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="cart-totals-section"
             variants={childVariants}
           >
             <h2>Cart Totals</h2>
-            <motion.div 
+            <motion.div
               className="totals-details"
               variants={childVariants}
             >
@@ -342,7 +350,7 @@ const PlaceOrder = () => {
                 <span>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</span>
               </div>
             </motion.div>
-            <motion.button 
+            <motion.button
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}

@@ -316,3 +316,23 @@ input[type="time"].input-animate:hover {
   background-color: #fff;
   transform: translateY(-1px);
 }
+
+/* Time hint styling */
+.time-hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #ff7300;
+  font-style: italic;
+  padding-left: 5px;
+}
+
+/* Invalid time styling */
+input[type="time"].input-animate:invalid {
+  border-color: #ff5252;
+  background-color: rgba(255, 82, 82, 0.05);
+}
+
+input[type="time"].input-animate:invalid + label {
+  color: #ff5252;
+}

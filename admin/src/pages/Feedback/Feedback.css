@@ -1,0 +1,133 @@
+.feedback-container {
+  padding: 20px;
+  background-color: #fff;
+  width: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+.feedback-container h1 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+.feedback-filter {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feedback-filter label {
+  font-weight: 500;
+  color: #555;
+}
+
+.feedback-filter select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.feedback-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.feedback-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid #ff7300;
+}
+
+.feedback-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Rating badge */
+.rating-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #f8f8f8;
+  border-radius: 20px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.customer-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.feedback-date {
+  font-size: 12px;
+  color: #777;
+}
+
+.rating {
+  display: flex;
+}
+
+.star {
+  font-size: 16px;
+  color: #ddd;
+  margin-left: 2px;
+  display: inline-block;
+}
+
+.star.filled {
+  color: #ff7300;
+}
+
+.feedback-content {
+  margin-bottom: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.feedback-order-id {
+  font-size: 12px;
+  color: #999;
+}
+
+.loading, .error, .no-feedback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feedback-list {
+    grid-template-columns: 1fr;
+  }
+}

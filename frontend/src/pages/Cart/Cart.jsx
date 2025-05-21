@@ -1,34 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Cart.css'
 import { useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
 
 function Cart() {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url, token, isLoading } = useContext(StoreContext);
   const navigate = useNavigate();
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleCheckout = () => {
+    if (!token) {
+      navigate('/');
+      return;
+    }
+
     setIsAnimating(true);
-    const transition = document.createElement('div');
-    transition.className = 'screen-transition';
-    document.body.appendChild(transition);
-
-    // Start transition immediately
-    requestAnimationFrame(() => {
-      transition.classList.add('active');
-    });
-
-    // Navigate after shorter animation
-    setTimeout(() => {
-      navigate('/order');
-      // Clean up transition element
-      setTimeout(() => {
-        document.body.removeChild(transition);
-      }, 300);
-    }, 350);
+    navigate('/order');
   };
+
+  if (isLoading) {
+    return (
+      <div className="cart-loading">
+        <div className="loading-spinner"></div>
+        <p>Loading cart...</p>
+      </div>
+    );
+  }
 
   return (
     <div className={`cart ${isAnimating ? 'flying-animation' : ''}`}>
@@ -84,9 +82,9 @@ function Cart() {
           <button 
             onClick={handleCheckout} 
             className='checkout-button'
-            disabled={isAnimating}
+            disabled={isAnimating || getTotalCartAmount() === 0 || !token}
           >
-            Checkout
+            {isAnimating ? 'Processing...' : 'Checkout'}
           </button>
         </div>
       </div>

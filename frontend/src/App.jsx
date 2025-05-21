@@ -8,7 +8,9 @@ import Verify from './pages/Verify/Verify';
 import Footer from './components/Footer/Footer';
 import LoginPopup from './components/LoginPopup/LoginPopup';
 import Testimonials from './components/Testimonial/Testimonials';
-  import MyOrders from './pages/MyOrders/myOrders';
+import MyOrders from './pages/MyOrders/myOrders';
+import PaymentSuccess from './pages/PaymentSuccess/PaymentSuccess';
+
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
@@ -23,6 +25,7 @@ const App = () => {
           <Route path='/order' element={<PlaceOrder />} />
           <Route path='/verify' element={<Verify />} />
           <Route path='/myorders' element={<MyOrders />} />
+          <Route path='/payment-success' element={<PaymentSuccess />} />
         </Routes>
       </div>
       <Testimonials />

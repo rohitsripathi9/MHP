@@ -11,6 +11,8 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState(() => localStorage.getItem("token") || "");
 
     const [food_list, setFoodList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     // Set up axios defaults when token changes
     useEffect(() => {
@@ -22,55 +24,83 @@ const StoreContextProvider = (props) => {
     }, [token]);
 
     const addToCart = async (itemId) => {
-        if (!cartItems[itemId]) {
-            setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
-        }
-        else {
-            setCartItems(prev => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-        }
-        if (token) {
-            await axios.post(url + "/api/cart/add", { itemId })
+        try {
+            if (!cartItems[itemId]) {
+                setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
+            }
+            else {
+                setCartItems(prev => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+            }
+            if (token) {
+                await axios.post(url + "/api/cart/add", { itemId })
+            }
+        } catch (error) {
+            console.error("Error adding to cart:", error);
         }
     }
 
     const removeFromCart = async (itemId) => {
-        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-        if (token) {
-            await axios.post(url + "/api/cart/remove", { itemId })
+        try {
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+            if (token) {
+                await axios.post(url + "/api/cart/remove", { itemId })
+            }
+        } catch (error) {
+            console.error("Error removing from cart:", error);
         }
     }
 
     const getTotalCartAmount = () => {
-        let totalAmount = 0;
-        for (const item in cartItems) {
-            if (cartItems[item] > 0) {
-                let itemInfo = food_list.find((product) => product._id === item);
-                totalAmount += itemInfo.price * cartItems[item];
+        try {
+            let totalAmount = 0;
+            if (!food_list || food_list.length === 0) return 0;
+            
+            for (const itemId in cartItems) {
+                if (cartItems[itemId] > 0) {
+                    const itemInfo = food_list.find((product) => product._id === itemId);
+                    if (itemInfo && itemInfo.price) {
+                        totalAmount += itemInfo.price * cartItems[itemId];
+                    }
+                }
             }
+            return totalAmount;
+        } catch (error) {
+            console.error("Error calculating cart total:", error);
+            return 0;
         }
-        return totalAmount;
     }
 
     const loadCartdata = async () => {
         try {
-            if (!token) return;
+            setIsLoading(true);
+            if (!token) {
+                setCartItems({});
+                return;
+            }
             const response = await axios.get(url + "/api/cart/get");
             if (response.data.success) {
                 setCartItems(response.data.data);
             }
         } catch (error) {
             console.error("Error loading cart:", error);
+            setError(error.message);
+        } finally {
+            setIsLoading(false);
         }
     }
 
     const fetchFoodList = async () => {
         try {
+            setIsLoading(true);
             const response = await axios.get(url + "/api/food/list");
             if (response.data.success) {
                 setFoodList(response.data.data);
             }
         } catch (error) {
             console.error("Error fetching food list:", error);
+            setError(error.message);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -96,9 +126,12 @@ const StoreContextProvider = (props) => {
                 localStorage.setItem("token", newToken);
             } else {
                 localStorage.removeItem("token");
+                setCartItems({}); // Clear cart when logging out
             }
             setToken(newToken);
-        }
+        },
+        isLoading,
+        error
     }
 
     return (

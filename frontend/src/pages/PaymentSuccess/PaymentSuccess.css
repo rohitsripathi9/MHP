@@ -1,0 +1,256 @@
+.payment-success-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 20px;
+}
+
+.payment-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.success-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Loading Ring Animation */
+.loading-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.loading-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 6px solid #4CAF50;
+  border-radius: 50%;
+  animation: loading-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #4CAF50 transparent transparent transparent;
+}
+
+.loading-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.loading-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loading-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes loading-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success Icon */
+.success-icon-wrapper {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.success-icon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.checkmark {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 3;
+  stroke: #4CAF50;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px #4CAF50;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #4CAF50;
+  fill: none;
+}
+
+.checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: #4CAF50;
+  stroke-width: 3;
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 60px #4CAF50;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+/* Success Message Styles */
+.success-message {
+  text-align: center;
+}
+
+.amount-paid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.success-icon-small {
+  background: #4CAF50;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.payment-card h2 {
+  color: #2C3E50;
+  font-size: 28px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.thank-you {
+  color: #666;
+  font-size: 18px;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+.success-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.return-home-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+.return-home-btn:hover {
+  background: #43A047;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.rate-experience-btn {
+  background: #FF9800;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.2);
+}
+
+.rate-experience-btn:hover {
+  background: #F57C00;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.feedback-card {
+  max-width: 500px;
+  padding: 30px;
+  min-height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .payment-card {
+    padding: 30px 20px;
+  }
+
+  .success-icon-wrapper {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+
+  .payment-card h2 {
+    font-size: 24px;
+  }
+
+  .thank-you {
+    font-size: 16px;
+  }
+
+  .return-home-btn,
+  .rate-experience-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .feedback-card {
+    padding: 20px 15px;
+  }
+
+  .success-buttons {
+    gap: 8px;
+  }
+}

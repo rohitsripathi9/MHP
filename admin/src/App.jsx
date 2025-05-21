@@ -6,6 +6,7 @@ import Order from './pages/Order/Order'
 import List from './pages/List/List'
 import Add from './pages/Add/Add'
 import Login from './pages/Login/Login'
+import Feedback from './pages/Feedback/Feedback'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -44,17 +45,17 @@ const App = () => {
     <>
       <ToastContainer />
       <Routes>
-        <Route 
-          path="/login" 
+        <Route
+          path="/login"
           element={
             localStorage.getItem('adminToken') ? (
               <Navigate to="/" replace />
             ) : (
               <Login />
             )
-          } 
+          }
         />
-        
+
         <Route
           path="/"
           element={
@@ -91,6 +92,16 @@ const App = () => {
             <ProtectedRoute>
               <AdminLayout>
                 <Order url={url} />
+              </AdminLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/feedback"
+          element={
+            <ProtectedRoute>
+              <AdminLayout>
+                <Feedback url={url} />
               </AdminLayout>
             </ProtectedRoute>
           }

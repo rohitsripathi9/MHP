@@ -6,14 +6,29 @@ const orderSchema = new mongoose.Schema({
     amount: { type: Number, required: true },
     status: { type: String, default: "Food Processing" },
     date: { type: Date, default: Date.now() },
-    pickup_time: { 
-        type: String, 
+    pickup_time: {
+        type: String,
         required: true,
         validate: {
             validator: function(v) {
-                return /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(v);
+                // First validate the format
+                if (!/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(v)) {
+                    return false;
+                }
+
+                // Then validate the hour range
+                const hour = parseInt(v.split(':')[0]);
+                return hour >= 7 && hour < 19;
             },
-            message: props => `${props.value} is not a valid time format! Use HH:mm format.`
+            message: props => {
+                const hour = parseInt(props.value.split(':')[0]);
+                if (!/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(props.value)) {
+                    return `${props.value} is not a valid time format! Use HH:mm format.`;
+                } else if (hour < 7 || hour >= 19) {
+                    return `${props.value} is outside allowed hours! Pickup time must be between 7:00 AM and 7:00 PM.`;
+                }
+                return 'Invalid time format';
+            }
         }
     },
     payment: { type: Boolean, required: true },

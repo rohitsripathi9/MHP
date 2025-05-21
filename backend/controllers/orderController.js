@@ -1,4 +1,4 @@
-import orderModel from "../models/orderModel.js";   
+import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 import jwt from 'jsonwebtoken';
@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2023-10-16' // Specify the API version
 });
 
-const placeOrder = async (req, res) => {  
+const placeOrder = async (req, res) => {
     const frontend_url = "http://localhost:5173";
     try {
         // Log the entire request for debugging
@@ -25,6 +25,14 @@ const placeOrder = async (req, res) => {
             throw new Error("Pickup time is required");
         }
 
+        // Validate pickup time is between 7 AM and 7 PM
+        const [hours, minutes] = req.body.pickup_time.split(':');
+        const pickupHour = parseInt(hours);
+
+        if (pickupHour < 7 || pickupHour >= 19) {
+            throw new Error("Pickup time must be between 7:00 AM and 7:00 PM");
+        }
+
         const userId = req.userId || req.body.userId;
         console.log("Using userId:", userId);
 
@@ -38,7 +46,7 @@ const placeOrder = async (req, res) => {
             payment: false,
             status: "Order Confirmed"
         });
-        
+
         console.log("Creating order with pickup time:", req.body.pickup_time);
         const savedOrder = await neworder.save();
         console.log("Order saved successfully:", savedOrder);
@@ -64,7 +72,7 @@ const placeOrder = async (req, res) => {
         });
 
         // Add platform fee
-        line_items.push({   
+        line_items.push({
             price_data: {
                 currency: "inr",
                 product_data: {
@@ -121,22 +129,22 @@ const placeOrder = async (req, res) => {
             success: false,
             message: error.message || "Error while placing order"
         });
-    }            
+    }
 }
 
 const updateOrderStatus = async (req, res) => {
     try {
         const { orderId, paymentStatus } = req.body;
-        
+
         console.log("Updating order status:", { orderId, paymentStatus });
-        
+
         if (!orderId) {
             return res.status(400).json({
                 success: false,
                 message: "Order ID is required"
             });
         }
-        
+
         // First get the existing order
         const existingOrder = await orderModel.findById(orderId);
         if (!existingOrder) {
@@ -147,23 +155,23 @@ const updateOrderStatus = async (req, res) => {
         }
 
         console.log("Existing order:", existingOrder);
-        
+
         // Update the order while preserving existing fields
         const updatedOrder = await orderModel.findByIdAndUpdate(
             orderId,
-            { 
+            {
                 payment: paymentStatus,
                 status: paymentStatus ? "Order Confirmed" : "Payment Failed",
                 pickup_time: existingOrder.pickup_time // Explicitly preserve pickup time
             },
-            { 
+            {
                 new: true, // Return the updated document
                 runValidators: true // Run model validators
             }
         );
-        
+
         console.log("Updated order:", updatedOrder);
-        
+
         res.json({
             success: true,
             message: "Order status updated successfully",
@@ -191,7 +199,7 @@ const verifyPayment = async (req, res) => {
             }
 
             console.log("Existing order before payment verification:", existingOrder);
-            
+
             // Use the pickup time from the request or keep the existing one
             const updatedPickupTime = pickup_time || existingOrder.pickup_time;
             console.log("Using pickup time:", updatedPickupTime);
@@ -203,14 +211,14 @@ const verifyPayment = async (req, res) => {
                     status: "Order Confirmed",
                     pickup_time: updatedPickupTime
                 },
-                { 
+                {
                     new: true,
                     runValidators: true
                 }
             );
 
             console.log("Order after payment verification:", updatedOrder);
-            
+
             res.json({
                 success: true,
                 message: "Payment verified successfully",
@@ -226,7 +234,7 @@ const verifyPayment = async (req, res) => {
                         status: "Payment Failed",
                         pickup_time: pickup_time || existingOrder.pickup_time
                     },
-                    { 
+                    {
                         new: true,
                         runValidators: true
                     }

@@ -13,7 +13,7 @@ const Verify = () => {
         const verifyPayment = async () => {
             const success = searchParams.get('success');
             const orderId = searchParams.get('orderId');
-            
+
             if (!orderId) {
                 console.error('No order ID found');
                 navigate('/myorders');
@@ -30,7 +30,7 @@ const Verify = () => {
                     {
                         orderId,
                         success,
-                        pickup_time: storedPickupTime // Include pickup time in verification
+                        pickup_time: storedPickupTime
                     },
                     {
                         headers: {
@@ -45,8 +45,13 @@ const Verify = () => {
                 // Clear the stored pickup time
                 localStorage.removeItem('pending_order_pickup_time');
 
-                // Redirect to orders page
-                navigate('/myorders');
+                // Store the order ID for feedback form
+                if (success === 'true' && response.data.success) {
+                    localStorage.setItem('lastOrderId', orderId);
+                    navigate('/payment-success');
+                } else {
+                    navigate('/myorders');
+                }
             } catch (error) {
                 console.error('Error verifying payment:', error);
                 navigate('/myorders');
@@ -59,11 +64,14 @@ const Verify = () => {
     return (
         <div className="verify-container">
             <div className="verify-content">
-                <h2>Verifying your payment...</h2>
-                <p>Please wait while we confirm your order.</p>
+                <div className="loading-ring">
+                    <div></div><div></div><div></div><div></div>
+                </div>
+                <h2>Verifying Payment</h2>
+                <p>Please wait while we process your payment...</p>
             </div>
         </div>
     );
 };
 
-export default Verify; 
+export default Verify;

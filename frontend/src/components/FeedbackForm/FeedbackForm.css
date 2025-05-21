@@ -1,0 +1,89 @@
+.feedback-form-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.feedback-form-container h2 {
+  color: #333;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.feedback-subtitle {
+  color: #777;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.rating-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 30px;
+  color: #ddd;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: color 0.2s ease;
+}
+
+.star.active {
+  color: #FFD700;
+}
+
+.feedback-comment {
+  margin-bottom: 20px;
+}
+
+.feedback-comment label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: 500;
+}
+
+.feedback-comment textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.feedback-error {
+  color: #e74c3c;
+  margin-bottom: 15px;
+  font-size: 14px;
+  background-color: rgba(231, 76, 60, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.submit-feedback-btn {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.submit-feedback-btn:hover {
+  background-color: #e64a19;
+}
+
+.submit-feedback-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
