@@ -5,7 +5,7 @@ import axios from "axios";
 
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
-    const url = "http://localhost:4000";
+    const url = "https://mhp-hkp3.onrender.com";
     
     // Initialize token from localStorage
     const [token, setToken] = useState(() => localStorage.getItem("token") || "");
